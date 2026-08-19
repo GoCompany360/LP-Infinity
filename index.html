@@ -162,6 +162,13 @@ h2 em{font-style:italic;color:var(--gold)}
 .unit .side li svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5;flex:0 0 20px;margin-top:2px}
 .unit .pic{position:relative;min-height:420px;background:var(--alt)}
 .unit .pic .ph{position:absolute;inset:0}
+.unit .pic{overflow:hidden}
+.unit .pic.padrao-pic{cursor:pointer}
+.unit .pic.padrao-pic img{transition:transform .7s cubic-bezier(.16,.8,.3,1)}
+.unit .pic.padrao-pic:hover img{transform:scale(1.05)}
+.unit .pic .padrao-cap{position:absolute;z-index:3;left:0;right:0;bottom:0;padding:34px 26px 22px;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2vw,26px);color:#fff;background:linear-gradient(0deg,rgba(6,9,11,.85),rgba(6,9,11,.2) 68%,transparent);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.unit .pic .padrao-cap b{font-style:normal;font-family:var(--sans);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--gold2);border:1px solid rgba(226,205,143,.55);border-radius:999px;padding:6px 14px;white-space:nowrap;transition:.3s}
+.unit .pic.padrao-pic:hover .padrao-cap b{background:var(--gold);color:#20180a;border-color:var(--gold)}
 /* video / tour */
 .videowrap{position:relative;max-width:1000px;margin:44px auto 0;aspect-ratio:16/9;border-radius:18px;overflow:hidden;border:1px solid var(--lineD);box-shadow:0 30px 70px rgba(0,0,0,.5)}
 .videowrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -444,7 +451,7 @@ footer .disc{color:#8d8779;font-size:12px;max-width:82ch;margin:0 auto;line-heig
           <li><svg viewBox="0 0 24 24"><path d="M5 11V5a2 2 0 0 1 2-2h4M19 13v6a2 2 0 0 1-2 2h-4M3 21 21 3"/></svg><span><b>3 vagas de garagem</b> privativas por unidade</span></li>
         </ul>
       </div>
-      <div class="pic"><div class="ph"><span class="im">∞</span>Suíte Master</div><img src="img/render-suite-master.jpg" alt="Suíte master Infinity" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.remove()"></div>
+      <div class="pic padrao-pic" onclick="padraoOpen()" role="button" tabindex="0" aria-label="Ver todas as fotos do projeto padrão"><div class="ph"><span class="im">∞</span></div><img src="img/render-living.jpg" alt="Sala de estar com lareira do projeto padrão Infinity" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.remove()"><span class="padrao-cap">Conheça o projeto padrão <b>Ver fotos</b></span></div>
     </div>
   </div>
 </section>
@@ -806,6 +813,8 @@ var partners=[
 })();
 var plb=document.getElementById('plb'),plbImg=document.getElementById('plbImg'),pI=0,pP=null;
 function plbOpen(i){pP=partners[i];pI=0;plbShow();plb.classList.add('on');}
+var padraoPhotos=['img/render-living.jpg','img/render-jantar.jpg','img/render-cozinha.jpg','img/render-gourmet.jpg','img/render-suite-master.jpg','img/render-suite2.jpg','img/render-closet.jpg','img/render-banheiro.jpg','img/render-escritorio.jpg','img/render-varanda.jpg','img/render-lavabo.jpg'];
+function padraoOpen(){pP={name:'Projeto padrão',photos:padraoPhotos};pI=0;plbShow();plb.classList.add('on');}
 function plbShow(){var ph=pP.photos;plbImg.src=ph[pI];
  document.getElementById('plbTitle').textContent=pP.name;
  document.getElementById('plbCount').textContent=(pI+1)+' / '+ph.length;}
